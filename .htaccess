@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule	^category-([0-9]+)(-).*(\.html)$	category.php?cat_cid=$1
+RewriteRule	^category-([0-9]+)(-)([0-9]+)(-).*(\.html)$	category.php?cat_cid=$1&start=$3
+RewriteRule	^book-([0-9]+)(-).*(\.html)$	book.php?book_id=$1
+RewriteRule	^author-([0-9]+)(-).*(\.html)$	author.php?auth_id=$1
