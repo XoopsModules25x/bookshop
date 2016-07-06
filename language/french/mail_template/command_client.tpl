@@ -1,20 +1,20 @@
 Bonjour {PRENOM} {NOM},
 
-Cet email vous informe que votre commande a bien été prise en compte sur notre site.
-Les articles commandés vous seront envoyés dans les meilleurs délais dès que le paiement
-aura été vérifié.
+Cet email vous informe que votre commande a bien Ã©tÃ© prise en compte sur notre site.
+Les articles commandÃ©s vous seront envoyÃ©s dans les meilleurs dÃ©lais dÃ¨s que le paiement
+aura Ã©tÃ© vÃ©rifiÃ©.
 
-La commande porte le numéro : {NUM_COMMANDE}
+La commande porte le numÃ©ro : {NUM_COMMANDE}
 Informations sur le client :
-	Nom et prénom : {NOM} {PRENOM}
-	Adresse : {ADRESSE}
-	CP et Ville : {CP} {VILLE}
-	Pays : {PAYS}
-	Téléphone : {TELEPHONE}
-	Email : {EMAIL}
-	Facture demandée : {FACTURE}
+    Nom et prÃ©nom : {NOM} {PRENOM}
+    Adresse : {ADRESSE}
+    CP et Ville : {CP} {VILLE}
+    Pays : {PAYS}
+    TÃ©lÃ©phone : {TELEPHONE}
+    Email : {EMAIL}
+    Facture demandÃ©e : {FACTURE}
 
-Détails de la commande :
+DÃ©tails de la commande :
 Titre du livre                                                Ex.     Prix       Port
 ---------------------------------------------------------------------------------------------
 {COMMANDE}
@@ -23,8 +23,8 @@ Pour voir votre facture en ligne, veuillez cliquer sur ce lien :
 {URL_BILL}
 
 
-Nous vous remercions pour votre commande et espérons vous revoir bientôt sur notre site.
+Nous vous remercions pour votre commande et espÃ©rons vous revoir bientÃ´t sur notre site.
 
-Cet email est généré automatiquement, merci de ne pas y répondre
+Cet email est gÃ©nÃ©rÃ© automatiquement, merci de ne pas y rÃ©pondre
 -------------------------
 {X_SITENAME} ({X_SITEURL})

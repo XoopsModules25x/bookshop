@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,49 +24,48 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 /**
- * Liste de tous les livres du catalogue (en fonction des paramètres du module)
+ *  List of all the books of the catalog (depending on the module parameters)
  */
-include 'header.php';
-$GLOBALS['current_category'] = -1;
-$xoopsOption['template_main'] = 'bookshop_allbooks.html';
-include_once XOOPS_ROOT_PATH.'/header.php';
+include __DIR__ . '/header.php';
+$GLOBALS['current_category']  = -1;
+$xoopsOption['template_main'] = 'bookshop_allbooks.tpl';
+include_once XOOPS_ROOT_PATH . '/header.php';
 
 $tblCategories = $tblVat = array();
 
-// Lecture des TVA
+// Read the VAT
 $tblVat = $h_bookshop_vat->GetAllVats();
-// Lecture des catégories
+// Read Categories
 $tblCategories = $h_bookshop_cat->GetAllCategories();
-// Préférences du module
+// Module Preferences
 $xoopsTpl->assign('mod_pref', $mod_pref);
 
-// Lecture des livres
+// Read books
 $tblBooks = array();
 $tblBooks = $h_bookshop_books->getRecentBooks(0, 0, 0, 'book_title');
-foreach($tblBooks as $item) {
-	$tbl_tmp = array();
-	$tbl_tmp = $item->toArray();
-	$tbl_tmp['book_category'] = isset($tblCategories[$item->getVar('book_cid')]) ? $tblCategories[$item->getVar('book_cid')]->toArray() : null;
-	if(isset($tblVat[$item->getVar('book_vat_id')])) {
-		$tbl_tmp['book_price_ttc'] = bookshop_getTTC($item->getVar('book_price'), $tblVat[$item->getVar('book_vat_id')]->getVar('vat_rate'));
-		$tbl_tmp['book_discount_price_ttc'] = bookshop_getTTC($item->getVar('book_discount_price'), $tblVat[$item->getVar('book_vat_id')]->getVar('vat_rate') );
-	} else {
-		$tbl_tmp['book_price_ttc'] = 0;
-		$tbl_tmp['book_discount_price_ttc'] = 0;
-	}
-	$xoopsTpl->append('books', $tbl_tmp);
+foreach ($tblBooks as $item) {
+    $tbl_tmp                  = array();
+    $tbl_tmp                  = $item->toArray();
+    $tbl_tmp['book_category'] = isset($tblCategories[$item->getVar('book_cid')]) ? $tblCategories[$item->getVar('book_cid')]->toArray() : null;
+    if (isset($tblVat[$item->getVar('book_vat_id')])) {
+        $tbl_tmp['book_price_ttc']          = bookshop_getTTC($item->getVar('book_price'), $tblVat[$item->getVar('book_vat_id')]->getVar('vat_rate'));
+        $tbl_tmp['book_discount_price_ttc'] = bookshop_getTTC($item->getVar('book_discount_price'), $tblVat[$item->getVar('book_vat_id')]->getVar('vat_rate'));
+    } else {
+        $tbl_tmp['book_price_ttc']          = 0;
+        $tbl_tmp['book_discount_price_ttc'] = 0;
+    }
+    $xoopsTpl->append('books', $tbl_tmp);
 }
 
 $xoopsTpl->assign('pdf_catalog', bookshop_getmoduleoption('pdf_catalog'));
 
 bookshop_setCSS();
-if (file_exists( BOOKSHOP_PATH.'language/'.$xoopsConfig['language'].'/modinfo.php')) {
-	include_once  BOOKSHOP_PATH.'language/'.$xoopsConfig['language'].'/modinfo.php';
+if (file_exists(BOOKSHOP_PATH . 'language/' . $xoopsConfig['language'] . '/modinfo.php')) {
+    include_once BOOKSHOP_PATH . 'language/' . $xoopsConfig['language'] . '/modinfo.php';
 } else {
-	include_once  BOOKSHOP_PATH.'language/english/modinfo.php';
+    include_once BOOKSHOP_PATH . 'language/english/modinfo.php';
 }
 
-$title = _MI_BOOKSHOP_SMNAME6.' - '.bookshop_get_module_name();
+$title = _MI_BOOKSHOP_SMNAME6 . ' - ' . bookshop_get_module_name();
 bookshop_set_metas($title, $title);
-include_once(XOOPS_ROOT_PATH.'/footer.php');
-?>
+include_once(XOOPS_ROOT_PATH . '/footer.php');

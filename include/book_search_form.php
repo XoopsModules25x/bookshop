@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,75 +24,68 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 /**
- * Recherche avancée dans les livres, formulaire de sélection des critères
+ * Recherche avancÃ©e dans les livres, formulaire de sÃ©lection des critÃ¨res
  */
-if (!defined('XOOPS_ROOT_PATH')) {
-	die('XOOPS root path not defined');
-}
-include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
-$sform = new XoopsThemeForm(bookshop_get_module_name().' - '._BOOKSHOP_SEARCHFOR, 'bookSearchForm', BOOKSHOP_URL.'search.php','post');
-$sform->addElement(new XoopsFormText(_BOOKSHOP_TEXT,'book_text',50,255, ''), false);
+defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+$sform = new XoopsThemeForm(bookshop_get_module_name() . ' - ' . _BOOKSHOP_SEARCHFOR, 'bookSearchForm', BOOKSHOP_URL . 'search.php', 'post');
+$sform->addElement(new XoopsFormText(_BOOKSHOP_TEXT, 'book_text', 50, 255, ''), false);
 $sform->addElement(new XoopsFormSelectMatchOption(_BOOKSHOP_TYPE, 'search_type', 3), false);
 
-
-// Sélecteur de catégories ****************************************************
+// SÃ©lecteur de catÃ©gories ****************************************************
 $categorySelect = new XoopsFormSelect(_BOOKSHOP_CATEGORY, 'book_category', 0);
-$mytree = new Bookshop_XoopsObjectTree($tblCategories, 'cat_cid', 'cat_pid');
-$select_categ = $mytree->makeSelBox('cat_pid', 'cat_title', '-');
-$select_categ = str_replace("<select id='cat_pid' name='cat_pid'>", '', $select_categ);
-$select_categ = str_replace('</select>', '', $select_categ);
-$select_categ = explode("</option>",$select_categ);
-$tblTmp = array();
-$tblTmp[0] = _BOOKSHOP_ALL_CATEGORIES;
-foreach($select_categ as $item) {
-	$array = array();
-	preg_match("/<option value=\'([0-9]*)\'>/", $item, $array);	// Pour récupérer l'ID de chaque catégorie
-	$libelle = preg_replace("/<option value=\'([0-9]*)\'>/", '', $item);	// Pour ne conserver que le libellé
-	if(isset($array[1])) {
-		$catId = intval($array[1]);
-		$tblTmp[$catId] = $libelle;
-	}
+$mytree         = new Bookshop_XoopsObjectTree($tblCategories, 'cat_cid', 'cat_pid');
+$select_categ   = $mytree->makeSelBox('cat_pid', 'cat_title', '-');
+$select_categ   = str_replace("<select id='cat_pid' name='cat_pid'>", '', $select_categ);
+$select_categ   = str_replace('</select>', '', $select_categ);
+$select_categ   = explode('</option>', $select_categ);
+$tblTmp         = array();
+$tblTmp[0]      = _BOOKSHOP_ALL_CATEGORIES;
+foreach ($select_categ as $item) {
+    $array = array();
+	preg_match("/<option value=\'([0-9]*)\'>/", $item, $array);	// Pour rÃ©cupÃ©rer l'ID de chaque catÃ©gorie
+    $libelle = preg_replace("/<option value=\'([0-9]*)\'>/", '', $item);    // Pour ne conserver que le libellï¿½
+    if (isset($array[1])) {
+        $catId          = (int)$array[1];
+        $tblTmp[$catId] = $libelle;
+    }
 }
 $categorySelect->addOptionArray($tblTmp);
 $sform->addElement($categorySelect, false);
 
-
-// Sélecteur pour les auteurs *************************************************
+// SÃ©lecteur pour les auteurs *************************************************
 $authorSelect = new XoopsFormSelect(_BOOKSHOP_AUTHOR, 'book_authors', 0, 5, true);
-$tblTmp = array();
-$tblTmp[0] = _BOOKSHOP_ALL_AUTHORS;
-foreach($tblAuthors as $item) {
-	$tblTmp[$item->getVar('auth_id')] = $item->getVar('auth_firstname').' '.$item->getVar('auth_name');
+$tblTmp       = array();
+$tblTmp[0]    = _BOOKSHOP_ALL_AUTHORS;
+foreach ($tblAuthors as $item) {
+    $tblTmp[$item->getVar('auth_id')] = $item->getVar('auth_firstname') . ' ' . $item->getVar('auth_name');
 }
 $authorSelect->addOptionArray($tblTmp);
 $sform->addElement($authorSelect, false);
 
-
-// Sélecteur pour les traducteurs *********************************************
+// SÃ©lecteur pour les traducteurs *********************************************
 $translatorSelect = new XoopsFormSelect(_BOOKSHOP_TRANSLATOR, 'book_translators', 0, 5, true);
-$tblTmp = array();
-$tblTmp[0] = _BOOKSHOP_ALL_TRANSLATORS;
-foreach($tblTranslators as $item) {
-	$tblTmp[$item->getVar('auth_id')] = $item->getVar('auth_firstname').' '.$item->getVar('auth_name');
+$tblTmp           = array();
+$tblTmp[0]        = _BOOKSHOP_ALL_TRANSLATORS;
+foreach ($tblTranslators as $item) {
+    $tblTmp[$item->getVar('auth_id')] = $item->getVar('auth_firstname') . ' ' . $item->getVar('auth_name');
 }
 $translatorSelect->addOptionArray($tblTmp);
 $sform->addElement($translatorSelect, false);
 
-// Sélecteur pour les langues *************************************************
+// SÃ©lecteur pour les langues *************************************************
 $languageSelect = new XoopsFormSelect(_BOOKSHOP_LANG, 'book_language', 0, 1, false);
-$tblTmp = array();
-$tblTmp[0] = _BOOKSHOP_ALL_LANGUAGES;
-foreach($tblLang as $item) {
-	$tblTmp[$item->getVar('lang_id')] = $item->getVar('lang_lang');
+$tblTmp         = array();
+$tblTmp[0]      = _BOOKSHOP_ALL_LANGUAGES;
+foreach ($tblLang as $item) {
+    $tblTmp[$item->getVar('lang_id')] = $item->getVar('lang_lang');
 }
 $languageSelect->addOptionArray($tblTmp);
 $sform->addElement($languageSelect, false);
 
-
 $sform->addElement(new XoopsFormHidden('op', 'go'));
 
-$button_tray = new XoopsFormElementTray('' ,'');
-$submit_btn = new XoopsFormButton('', 'post', _SUBMIT, 'submit');
+$button_tray = new XoopsFormElementTray('', '');
+$submit_btn  = new XoopsFormButton('', 'post', _SUBMIT, 'submit');
 $button_tray->addElement($submit_btn);
 $sform->addElement($button_tray);
-?>

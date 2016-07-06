@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,7 +24,6 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-include '../../mainfile.php';
-include 'header.php';
-include XOOPS_ROOT_PATH.'/include/comment_reply.php';
-?>
+include __DIR__ . '/../../mainfile.php';
+include __DIR__ . '/header.php';
+include XOOPS_ROOT_PATH . '/include/comment_reply.php';

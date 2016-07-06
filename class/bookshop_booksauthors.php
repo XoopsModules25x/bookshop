@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,34 +24,39 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-if (!defined('XOOPS_ROOT_PATH')) {
-	die("XOOPS root path not defined");
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
-include_once XOOPS_ROOT_PATH.'/class/xoopsobject.php';
+include_once XOOPS_ROOT_PATH . '/kernel/object.php';
 if (!class_exists('Bookshop_XoopsPersistableObjectHandler')) {
-	include_once XOOPS_ROOT_PATH.'/modules/bookshop/class/PersistableObjectHandler.php';
+    include_once XOOPS_ROOT_PATH . '/modules/bookshop/class/PersistableObjectHandler.php';
 }
 
+/**
+ * Class bookshop_booksauthors
+ */
 class bookshop_booksauthors extends Bookshop_Object
 {
-	function bookshop_booksauthors()
-	{
-		$this->initVar('ba_id',XOBJ_DTYPE_INT,null,false);
-		$this->initVar('ba_book_id',XOBJ_DTYPE_INT,null,false);
-		$this->initVar('ba_auth_id',XOBJ_DTYPE_INT,null,false);
-		$this->initVar('ba_type',XOBJ_DTYPE_INT,null,false);
-		// Pour autoriser le html
-		$this->initVar('dohtml', XOBJ_DTYPE_INT, 1, false);
-	}
+    public function __construct()
+    {
+        $this->initVar('ba_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('ba_book_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('ba_auth_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('ba_type', XOBJ_DTYPE_INT, null, false);
+        // Pour autoriser le html
+        $this->initVar('dohtml', XOBJ_DTYPE_INT, 1, false);
+    }
 }
 
-
+/**
+ * Class BookshopBookshop_booksauthorsHandler
+ */
 class BookshopBookshop_booksauthorsHandler extends Bookshop_XoopsPersistableObjectHandler
 {
-	function BookshopBookshop_booksauthorsHandler($db)
-	{	//													Table				Classe				 		Id
-		$this->BookXoopsPersistableObjectHandler($db, 'bookshop_booksauthors', 'bookshop_booksauthors', 'ba_id');
-	}
+    /**
+     * @param $db
+     */
+    public function __construct($db)
+    {    //                                                 Table               Classe                      Id
+        parent::__construct($db, 'bookshop_booksauthors', 'bookshop_booksauthors', 'ba_id');
+    }
 }
-?>

@@ -5,13 +5,13 @@ when the payment has been verified.
 
 Order number : {NUM_COMMANDE}
 Information :
-	First and last name : {NOM} {PRENOM}
-	Address : {ADRESSE}
-	Post code and town : {CP} {VILLE}
-	Country : {PAYS}
-	Telephone : {TELEPHONE}
-	Email : {EMAIL}
-	Invoice wanted ? {FACTURE}
+First and last name : {NOM} {PRENOM}
+Address : {ADRESSE}
+Post code and town : {CP} {VILLE}
+Country : {PAYS}
+Telephone : {TELEPHONE}
+Email : {EMAIL}
+Invoice wanted ? {FACTURE}
 
 Details of your order :
 Book's Title                                                  Number    Price      Shipping

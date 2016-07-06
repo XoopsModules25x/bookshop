@@ -6,19 +6,18 @@ U moet wel de status van de betaling controleren op uw Paypal control panel.
 
 - Nummer bestelling: {NUM_COMMANDE}
 - Klantgegevens:
-	Voor- en achternaam: {NOM} {PRENOM}
-	Adres: {ADRESSE}
-	Postcode en plaats: {CP} {VILLE}
-	Land: {PAYS}
-	Telefoon: {TELEPHONE}
-	E-mail: {EMAIL}
-	Factuur gewenst? {FACTURE}
+Voor- en achternaam: {NOM} {PRENOM}
+Adres: {ADRESSE}
+Postcode en plaats: {CP} {VILLE}
+Land: {PAYS}
+Telefoon: {TELEPHONE}
+E-mail: {EMAIL}
+Factuur gewenst? {FACTURE}
 
 - Bestelling details :
 Boek titel                                                  Copy    Prijs      Verzendkosten
 ---------------------------------------------------------------------------------------------
 {COMMANDE}
-
 
 
 Dit bericht is automatisch gegenereerd.

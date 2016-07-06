@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="bookshop" default="startBuild" basedir=".">
-	<description>
-		Création de l'archive zip
-	</description>
+    <description>
+        Création de l'archive zip
+    </description>
 
     <target name="startBuild">
-		<zip destfile="bookshop.zip">
-			<zipfileset dir="." excludes= "**/.cache, **/.settings, **/.svn, **/templates karting-spirit.com, .cache/**, .project, .settings/**, _todo.txt, build.xml, datas/**, docs/**, documentation/**, FTPClient.xml, htaccessgen.php, infomaniak.htaccess, originaux.7z, Thumbs.db, xoops3.sql" />
-		</zip>
+        <zip destfile="bookshop.zip">
+            <zipfileset dir="." excludes="**/.cache, **/.settings, **/.svn, **/templates karting-spirit.com, .cache/**, .project, .settings/**, _todo.txt, build.xml, datas/**, docs/**, documentation/**, FTPClient.xml, htaccessgen.php, infomaniak.htaccess, originaux.7z, Thumbs.db, xoops3.sql"/>
+        </zip>
     </target>
 </project>

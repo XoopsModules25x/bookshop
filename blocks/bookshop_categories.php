@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,96 +24,108 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 /**
- * Affiche le bloc des catégories en fonction de la catégorie en cours (fonctionne de paire avec les pages du module)
+ * Affiche le bloc des catÃ©gories en fonction de la catÃ©gorie en cours (fonctionne de paire avec les pages du module)
+ *
+ * @param $options
+ *
+ * @return array
  */
 function b_bookshop_category_show($options)
 {
-	global $xoopsTpl;
-	include XOOPS_ROOT_PATH.'/modules/bookshop/include/common.php';
-	$block = array();
-	$url = BOOKSHOP_URL.'include/bookshop.css';
-	$xoopsTpl->assign("xoops_module_header", "<link rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />");
-	$block['nostock_msg'] = bookshop_getmoduleoption('nostock_msg');
+    global $xoopsTpl;
+    include XOOPS_ROOT_PATH . '/modules/bookshop/include/common.php';
+    $block = array();
+    $url   = BOOKSHOP_URL . 'assets/css/bookshop.css';
+    $xoopsTpl->assign('xoops_module_header', "<link rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />");
+    $block['nostock_msg'] = bookshop_getmoduleoption('nostock_msg');
 
-	if(intval($options[0]) == 0) {
-		$block['block_option'] = 0;
-		if(!isset($GLOBALS['current_category']) || $GLOBALS['current_category'] == -1) {
-			return false;
-		}
-		$cat_cid = intval($GLOBALS['current_category']);
-		include XOOPS_ROOT_PATH.'/modules/bookshop/include/common.php';
+    if ((int)$options[0] == 0) {
+        $block['block_option'] = 0;
+        if (!isset($GLOBALS['current_category']) || $GLOBALS['current_category'] == -1) {
+            return false;
+        }
+        $cat_cid = (int)$GLOBALS['current_category'];
+        include XOOPS_ROOT_PATH . '/modules/bookshop/include/common.php';
 
-		if($cat_cid > 0 ) {
-			include_once XOOPS_ROOT_PATH.'/class/tree.php';
-			$tbl_categories = $tblChilds = $tbl_tmp = array();
-			$tbl_categories = $h_bookshop_cat->GetAllCategories();
-			$mytree = new XoopsObjectTree($tbl_categories, 'cat_cid', 'cat_pid');
-			$tblChilds = $mytree->getAllChild($cat_cid);
-			//$tblChilds = array_reverse($tblChilds);
-			foreach($tblChilds as $item) {
-				$tbl_tmp[] = "<a href='".$h_bookshop_cat->GetCategoryLink($item->getVar('cat_cid'), $item->getVar('cat_title'))."' title='".bookshop_makeHrefTitle($item->getVar('cat_title'))."'>".$item->getVar('cat_title')."</a>";
-			}
-			$block['block_categories'] = $tbl_tmp;
+        if ($cat_cid > 0) {
+            include_once XOOPS_ROOT_PATH . '/class/tree.php';
+            $tbl_categories = $tblChilds = $tbl_tmp = array();
+            $tbl_categories = $h_bookshop_cat->GetAllCategories();
+            $mytree         = new XoopsObjectTree($tbl_categories, 'cat_cid', 'cat_pid');
+            $tblChilds      = $mytree->getAllChild($cat_cid);
+            //$tblChilds = array_reverse($tblChilds);
+            foreach ($tblChilds as $item) {
+                $tbl_tmp[] = "<a href='" . $h_bookshop_cat->GetCategoryLink($item->getVar('cat_cid'), $item->getVar('cat_title')) . "' title='" . bookshop_makeHrefTitle($item->getVar('cat_title')) . "'>" . $item->getVar('cat_title') . '</a>';
+            }
+            $block['block_categories'] = $tbl_tmp;
 
-			$category = null;
-			if($cat_cid > 0) {
-				$category = $h_bookshop_cat->get($cat_cid);
-				if(is_object($category)) {
-					$block['block_current_category'] = $category->toArray();
-				}
-			}
-		} else {	// On est à la racine, on n'affiche donc que les catégories mères
-			$tbl_categories = array();
-			$criteria = new Criteria('cat_pid', 0, '=');
-			$criteria->setSort('cat_title');
-			$tbl_categories = $h_bookshop_cat->getObjects($criteria, true);
-			foreach($tbl_categories as $item) {
-				$tbl_tmp[] = "<a href='".$h_bookshop_cat->GetCategoryLink($item->getVar('cat_cid'), $item->getVar('cat_title'))."' title='".bookshop_makeHrefTitle($item->getVar('cat_title'))."'>".$item->getVar('cat_title')."</a>";
-			}
-			$block['block_categories'] = $tbl_tmp;
-		}
-	} else {	// Affichage classique
-		$block['block_option'] = 1;
-		include XOOPS_ROOT_PATH.'/modules/bookshop/include/common.php';
-		include_once BOOKSHOP_PATH.'class/tree.php';
-		$tbl_categories = $h_bookshop_cat->GetAllCategories();
-		$mytree = new Bookshop_XoopsObjectTree($tbl_categories, 'cat_cid', 'cat_pid');
-		$jump = BOOKSHOP_URL."category.php?cat_cid=";
-		$additional = "onchange='location=\"".$jump."\"+this.options[this.selectedIndex].value'";
-		if(isset($GLOBALS['current_category']) && $GLOBALS['current_category'] != -1) {
-			$cat_cid = intval($GLOBALS['current_category']);
-		} else {
-			$cat_cid = 0;
-		}
-		$htmlSelect = $mytree->makeSelBox('cat_cid', 'cat_title', '-', $cat_cid, false, 0, $additional);
-		$block['htmlSelect'] = $htmlSelect;
-	}
-	return $block;
-}
+            $category = null;
+            if ($cat_cid > 0) {
+                $category = $h_bookshop_cat->get($cat_cid);
+                if (is_object($category)) {
+                    $block['block_current_category'] = $category->toArray();
+                }
+            }
+		} else {	// On est Ã  la racine, on n'affiche donc que les catÃ©gories mÃ¨res
+            $tbl_categories = array();
+            $criteria       = new Criteria('cat_pid', 0, '=');
+            $criteria->setSort('cat_title');
+            $tbl_categories = $h_bookshop_cat->getObjects($criteria, true);
+            foreach ($tbl_categories as $item) {
+                $tbl_tmp[] = "<a href='" . $h_bookshop_cat->GetCategoryLink($item->getVar('cat_cid'), $item->getVar('cat_title')) . "' title='" . bookshop_makeHrefTitle($item->getVar('cat_title')) . "'>" . $item->getVar('cat_title') . '</a>';
+            }
+            $block['block_categories'] = $tbl_tmp;
+        }
+    } else {    // Affichage classique
+        $block['block_option'] = 1;
+        include XOOPS_ROOT_PATH . '/modules/bookshop/include/common.php';
+        include_once BOOKSHOP_PATH . 'class/tree.php';
+        $tbl_categories = $h_bookshop_cat->GetAllCategories();
+        $mytree         = new Bookshop_XoopsObjectTree($tbl_categories, 'cat_cid', 'cat_pid');
+        $jump           = BOOKSHOP_URL . 'category.php?cat_cid=';
+        $additional     = "onchange='location=\"" . $jump . "\"+this.options[this.selectedIndex].value'";
+        if (isset($GLOBALS['current_category']) && $GLOBALS['current_category'] != -1) {
+            $cat_cid = (int)$GLOBALS['current_category'];
+        } else {
+            $cat_cid = 0;
+        }
+        $htmlSelect          = $mytree->makeSelBox('cat_cid', 'cat_title', '-', $cat_cid, false, 0, $additional);
+        $block['htmlSelect'] = $htmlSelect;
+    }
 
-function b_bookshop_category_edit($options)
-{
-	global $xoopsConfig;
-	include XOOPS_ROOT_PATH.'/modules/bookshop/include/common.php';
-
-	$checkeds = array('','');
-	$checkeds[$options[0]] = 'checked';
-	$form = '';
-	$form .= '<b>'._MB_BOOKSHOP_TYPE_BLOCK."</b><br /><input type='radio' name='options[]' id='options[]' value='0' ".$checkeds[0]." />"._MB_BOOKSHOP_TYPE_BLOCK2."<br /><input type='radio' name='options[]' id='options[]' value='1' ".$checkeds[1]." />"._MB_BOOKSHOP_TYPE_BLOCK1.'</td></tr>';
-	return $form;
+    return $block;
 }
 
 /**
- * Bloc à la volée
+ * @param $options
+ *
+ * @return string
+ */
+function b_bookshop_category_edit($options)
+{
+    global $xoopsConfig;
+    include XOOPS_ROOT_PATH . '/modules/bookshop/include/common.php';
+
+    $checkeds              = array('', '');
+    $checkeds[$options[0]] = 'checked';
+    $form                  = '';
+    $form .= '<b>' . _MB_BOOKSHOP_TYPE_BLOCK . "</b><br><input type='radio' name='options[]' id='options[]' value='0' " . $checkeds[0] . ' />' . _MB_BOOKSHOP_TYPE_BLOCK2 . "<br><input type='radio' name='options[]' id='options[]' value='1' " . $checkeds[1] . ' />' . _MB_BOOKSHOP_TYPE_BLOCK1
+             . '</td></tr>';
+
+    return $form;
+}
+
+/**
+ * Ad hoc Block
+ *
+ * @param $options
  */
 function b_bookshop_category_duplicatable($options)
 {
-	$options = explode('|',$options);
-	$block = & b_bookshop_category($options);
+    $options = explode('|', $options);
+    $block   = &b_bookshop_category($options);
 
-	$tpl = new XoopsTpl();
-	$tpl->assign('block', $block);
-	$tpl->display('db:bookshop_block_categories.html');
+    $tpl = new XoopsTpl();
+    $tpl->assign('block', $block);
+    $tpl->display('db:bookshop_block_categories.tpl');
 }
-
-?>
