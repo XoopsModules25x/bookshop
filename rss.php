@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -26,36 +26,36 @@
 /**
  * Flux RSS pour suivre les derniers livres
  */
-include 'header.php';
-include_once XOOPS_ROOT_PATH.'/class/template.php';
+include __DIR__ . '/header.php';
+include_once XOOPS_ROOT_PATH . '/class/template.php';
 
-if(bookshop_getmoduleoption('use_rss') == 0) {
-	exit;
+if (bookshop_getmoduleoption('use_rss') == 0) {
+    exit;
 }
-// Paramètre, soit rien auquel cas on prend tous les livres récents soit cat_cid
-$cat_cid = isset($_GET['cat_cid']) ? intval($_GET['cat_cid']) : 0;
+// Set or anything which case it takes all the recent books is cat_cid
+$cat_cid = isset($_GET['cat_cid']) ? (int)$_GET['cat_cid'] : 0;
 if (function_exists('mb_http_output')) {
-	mb_http_output('pass');
+    mb_http_output('pass');
 }
 $charset = 'utf-8';
-header ('Content-Type:text/xml; charset='.$charset);
-$tpl = new XoopsTpl();
+header('Content-Type:text/xml; charset=' . $charset);
+$tpl           = new XoopsTpl();
 $categoryTitle = '';
-if(!empty($cat_cid)) {
-	$category = null;
-	$category = $h_bookshop_cat->get($cat_cid);
-	if(is_object($category)) {
-		$categoryTitle = $category->getVar('cat_title');
-	}
+if (!empty($cat_cid)) {
+    $category = null;
+    $category = $h_bookshop_cat->get($cat_cid);
+    if (is_object($category)) {
+        $categoryTitle = $category->getVar('cat_title');
+    }
 }
 $sitename = htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES);
-$email = checkEmail($xoopsConfig['adminmail'],true);
-$slogan = htmlspecialchars($xoopsConfig['slogan'], ENT_QUOTES);
-$limit = bookshop_getmoduleoption('perpage');
+$email    = checkEmail($xoopsConfig['adminmail'], true);
+$slogan   = htmlspecialchars($xoopsConfig['slogan'], ENT_QUOTES);
+$limit    = bookshop_getmoduleoption('perpage');
 
-$tpl->assign('charset',$charset);
+$tpl->assign('charset', $charset);
 $tpl->assign('channel_title', xoops_utf8_encode($sitename));
-$tpl->assign('channel_link', XOOPS_URL.'/');
+$tpl->assign('channel_link', XOOPS_URL . '/');
 $tpl->assign('channel_desc', xoops_utf8_encode($slogan));
 $tpl->assign('channel_lastbuild', formatTimestamp(time(), 'rss'));
 $tpl->assign('channel_webmaster', xoops_utf8_encode($email));
@@ -63,31 +63,32 @@ $tpl->assign('channel_editor', xoops_utf8_encode($email));
 $tpl->assign('channel_category', xoops_utf8_encode($categoryTitle));
 $tpl->assign('channel_generator', xoops_utf8_encode(bookshop_get_module_name()));
 $tpl->assign('channel_language', _LANGCODE);
-$tpl->assign('image_url', XOOPS_URL.'/images/logo.gif');
-$dimention = getimagesize(XOOPS_ROOT_PATH.'/images/logo.gif');
+$tpl->assign('image_url', XOOPS_URL . '/images/logo.gif');
+$dimention = getimagesize(XOOPS_ROOT_PATH . '/images/logo.gif');
 if (empty($dimention[0])) {
-	$width = 88;
+    $width = 88;
 } else {
-	$width = ($dimention[0] > 144) ? 144 : $dimention[0];
+    $width = ($dimention[0] > 144) ? 144 : $dimention[0];
 }
 if (empty($dimention[1])) {
-	$height = 31;
+    $height = 31;
 } else {
-	$height = ($dimention[1] > 400) ? 400 : $dimention[1];
+    $height = ($dimention[1] > 400) ? 400 : $dimention[1];
 }
 $tpl->assign('image_width', $width);
 $tpl->assign('image_height', $height);
 
 $tblBooks = $h_bookshop_books->getRecentBooks(0, $limit, $cat_cid);
-foreach($tblBooks as $item) {
-	$titre = htmlspecialchars($item->getVar('book_title'), ENT_QUOTES);
-	$description = htmlspecialchars(strip_tags($item->getVar('book_summary')), ENT_QUOTES);
-	$link = $h_bookshop_books->GetBookLink($item->getVar('book_id'), $item->getVar('book_title'));
-          $tpl->append('items', array('title' => xoops_utf8_encode($titre),
-          	'link' => $link,
-          	'guid' => $link,
-          	'pubdate' => formatTimestamp($item->getVar('book_submitted'), 'rss'),
-          	'description' => xoops_utf8_encode($description)));
+foreach ($tblBooks as $item) {
+    $titre       = htmlspecialchars($item->getVar('book_title'), ENT_QUOTES);
+    $description = htmlspecialchars(strip_tags($item->getVar('book_summary')), ENT_QUOTES);
+    $link        = $h_bookshop_books->GetBookLink($item->getVar('book_id'), $item->getVar('book_title'));
+    $tpl->append('items', array(
+        'title'       => xoops_utf8_encode($titre),
+        'link'        => $link,
+        'guid'        => $link,
+        'pubdate'     => formatTimestamp($item->getVar('book_submitted'), 'rss'),
+        'description' => xoops_utf8_encode($description)
+    ));
 }
-$tpl->display('db:bookshop_rss.html');
-?>
+$tpl->display('db:bookshop_rss.tpl');

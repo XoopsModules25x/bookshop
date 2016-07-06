@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,46 +24,54 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
+/**
+ * @param $category
+ * @param $item_id
+ *
+ * @return mixed
+ */
 function bookshop_notify_iteminfo($category, $item_id)
 {
-	global $xoopsModule, $xoopsModuleConfig, $xoopsConfig;
+    global $xoopsModule, $xoopsModuleConfig, $xoopsConfig;
 
-	if (empty($xoopsModule) || $xoopsModule->getVar('dirname') != 'bookshop') {
-		$module_handler =& xoops_gethandler('module');
-		$module =& $module_handler->getByDirname('bookshop');
-		$config_handler =& xoops_gethandler('config');
-		$config =& $config_handler->getConfigsByCat(0,$module->getVar('mid'));
-	} else {
-		$module =& $xoopsModule;
-		$config =& $xoopsModuleConfig;
-	}
+    if (empty($xoopsModule) || $xoopsModule->getVar('dirname') !== 'bookshop') {
+        $module_handler = xoops_getHandler('module');
+        $module         =& $module_handler->getByDirname('bookshop');
+        $config_handler = xoops_getHandler('config');
+        $config         =& $config_handler->getConfigsByCat(0, $module->getVar('mid'));
+    } else {
+        $module =& $xoopsModule;
+        $config =& $xoopsModuleConfig;
+    }
 
-	if ($category == 'global') {
-		$item['name'] = '';
-		$item['url'] = '';
-		return $item;
-	}
+    if ($category === 'global') {
+        $item['name'] = '';
+        $item['url']  = '';
 
-	if ($category == 'new_category') {
-		include BOOKSHOP_PATH.'include/common.php';
-		$category = null;
-		$category = $h_bookshop_cat->get($item_id);
-		if(is_object($category)) {
-			$item['name'] = $category->getVar('cat_title');
-			$item['url'] = BOOKSHOP_URL.'category.php?cat_cid=' . $item_id;
-		}
-		return $item;
-	}
+        return $item;
+    }
 
-	if ($category == 'new_book') {
-		include BOOKSHOP_PATH.'include/common.php';
-		$book = null;
-		$book = $h_bookshop_books->get($item_id);
-		if(is_object($book)) {
-			$item['name'] = $book->getVar('book_title');
-			$item['url'] = BOOKSHOP_URL.'book.php?book_id=' . $item_id;
-		}
-		return $item;
-	}
+    if ($category === 'new_category') {
+        include BOOKSHOP_PATH . 'include/common.php';
+        $category = null;
+        $category = $h_bookshop_cat->get($item_id);
+        if (is_object($category)) {
+            $item['name'] = $category->getVar('cat_title');
+            $item['url']  = BOOKSHOP_URL . 'category.php?cat_cid=' . $item_id;
+        }
+
+        return $item;
+    }
+
+    if ($category === 'new_book') {
+        include BOOKSHOP_PATH . 'include/common.php';
+        $book = null;
+        $book = $h_bookshop_books->get($item_id);
+        if (is_object($book)) {
+            $item['name'] = $book->getVar('book_title');
+            $item['url']  = BOOKSHOP_URL . 'book.php?book_id=' . $item_id;
+        }
+
+        return $item;
+    }
 }
-?>

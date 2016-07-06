@@ -1,9 +1,9 @@
 Bonjour,
 
-Cet email vous informe que le paiement de la commande numéro {NUM_COMMANDE}
+Cet email vous informe que le paiement de la commande numÃ©ro {NUM_COMMANDE}
 semble FRAUDULEUX.
 
 
-Cet email est généré automatiquement, merci de ne pas y répondre
+Cet email est gÃ©nÃ©rÃ© automatiquement, merci de ne pas y rÃ©pondre
 -------------------------
 {X_SITENAME} ({X_SITEURL})

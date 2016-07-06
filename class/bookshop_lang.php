@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,52 +24,59 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-if (!defined('XOOPS_ROOT_PATH')) {
-	die("XOOPS root path not defined");
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
-include_once XOOPS_ROOT_PATH.'/class/xoopsobject.php';
+include_once XOOPS_ROOT_PATH . '/kernel/object.php';
 if (!class_exists('Bookshop_XoopsPersistableObjectHandler')) {
-	include_once XOOPS_ROOT_PATH.'/modules/bookshop/class/PersistableObjectHandler.php';
+    include_once XOOPS_ROOT_PATH . '/modules/bookshop/class/PersistableObjectHandler.php';
 }
 
+/**
+ * Class bookshop_lang
+ */
 class bookshop_lang extends Bookshop_Object
 {
-	function bookshop_lang()
-	{
-		$this->initVar('lang_id',XOBJ_DTYPE_INT,null,false);
-		$this->initVar('lang_lang',XOBJ_DTYPE_TXTBOX,null,false);
-	}
+    public function __construct()
+    {
+        $this->initVar('lang_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('lang_lang', XOBJ_DTYPE_TXTBOX, null, false);
+    }
 }
 
-
+/**
+ * Class BookshopBookshop_langHandler
+ */
 class BookshopBookshop_langHandler extends Bookshop_XoopsPersistableObjectHandler
 {
-	function BookshopBookshop_langHandler($db)
-	{	//												Table				Classe		 Id
-		$this->BookXoopsPersistableObjectHandler($db, 'bookshop_lang', 'bookshop_lang', 'lang_id');
-	}
+    /**
+     * @param $db
+     */
+    public function __construct($db)
+    {    //                                             Table               Classe       Id
+        parent::__construct($db, 'bookshop_lang', 'bookshop_lang', 'lang_id');
+    }
 
-	/**
-	 * Renvoie la liste de toutes les langues du module
-	 *
-	 * @param integer $start Position de départ
-	 * @param integer $limit Nombre total d'enregistrements à renvoyer
+    /**
+     * Renvoie la liste de toutes les langues du module
+     *
+	 * @param integer $start Position de dÃ©part
+	 * @param integer $limit Nombre total d'enregistrements Ã  renvoyer
 	 * @param string $order Champ sur lequel faire le tri
-	 * @param string $order Ordre du tri
-	 * @param boolean $idaskey Indique si le tableau renvoyé doit avoir pour clé l'identifiant unique de l'enregistrement
-	 * @return array tableau d'objets de type langues
-	 */
-	function GetAllLang($start = 0, $limit = 0, $sort = 'lang_lang', $order='ASC', $idaskey = true)
-	{
-		$critere = new Criteria('lang_id', 0 ,'<>');
-		$critere->setLimit($limit);
-		$critere->setStart($start);
-		$critere->setSort($sort);
-		$critere->setOrder($order);
-		$tbl_categs = array();
-		$tbl_categs = $this->getObjects($critere, $idaskey);
-		return $tbl_categs;
-	}
+     * @param string  $order   Ordre du tri
+	 * @param boolean $idaskey Indique si le tableau renvoyÃ© doit avoir pour clÃ© l'identifiant unique de l'enregistrement
+     *
+     * @return array tableau d'objets de type langues
+     */
+    public function GetAllLang($start = 0, $limit = 0, $sort = 'lang_lang', $order = 'ASC', $idaskey = true)
+    {
+        $critere = new Criteria('lang_id', 0, '<>');
+        $critere->setLimit($limit);
+        $critere->setStart($start);
+        $critere->setSort($sort);
+        $critere->setOrder($order);
+        $tbl_categs = array();
+        $tbl_categs =& $this->getObjects($critere, $idaskey);
+
+        return $tbl_categs;
+    }
 }
-?>

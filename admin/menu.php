@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -23,30 +23,105 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-$adminmenu[0]['title'] = _MI_BOOKSHOP_ADMENU10;
-$adminmenu[0]['link'] = "admin/index.php?op=dashboard";
-$adminmenu[1]['title'] = _MI_BOOKSHOP_ADMENU0;
-$adminmenu[1]['link'] = "admin/index.php?op=lang";
-$adminmenu[2]['title'] = _MI_BOOKSHOP_ADMENU1;
-$adminmenu[2]['link'] = "admin/index.php?op=vat";
-$adminmenu[3]['title'] = _MI_BOOKSHOP_ADMENU2;
-$adminmenu[3]['link'] = "admin/index.php?op=categories";
-$adminmenu[4]['title'] = _MI_BOOKSHOP_ADMENU3;
-$adminmenu[4]['link'] = "admin/index.php?op=authors";
-$adminmenu[5]['title'] = _MI_BOOKSHOP_ADMENU4;
-$adminmenu[5]['link'] = "admin/index.php?op=books";
-$adminmenu[6]['title'] = _MI_BOOKSHOP_ADMENU5;
-$adminmenu[6]['link'] = "admin/index.php?op=commands";
-$adminmenu[7]['title'] = _MI_BOOKSHOP_ADMENU6;
-$adminmenu[7]['link'] = "admin/index.php?op=discount";
-$adminmenu[8]['title'] = _MI_BOOKSHOP_ADMENU7;
-$adminmenu[8]['link'] = "admin/index.php?op=newsletter";
-$adminmenu[9]['title'] = _MI_BOOKSHOP_ADMENU8;
-$adminmenu[9]['link'] = "admin/index.php?op=texts";
-$adminmenu[10]['title'] = _MI_BOOKSHOP_ADMENU9;
-$adminmenu[10]['link'] = "admin/index.php?op=lowstock";
-$adminmenu[11]['title'] = "Instant Zero";
-$adminmenu[11]['link'] = "admin/index.php?op=instant-zero";
+defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined');
+
+//$path = dirname(dirname(dirname(__DIR__)));
+//include_once $path . '/mainfile.php';
+
+$module_handler = xoops_getHandler('module');
+$module         = $module_handler->getByDirname(basename(dirname(__DIR__)));
+$pathIcon32     = '../../' . $module->getInfo('icons32');
+xoops_loadLanguage('modinfo', $module->dirname());
+
+$pathModuleAdmin = XOOPS_ROOT_PATH . '/' . $module->getInfo('dirmoduleadmin') . '/moduleadmin';
+if (!file_exists($fileinc = $pathModuleAdmin . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/' . 'main.php')) {
+    $fileinc = $pathModuleAdmin . '/language/english/main.php';
+}
+include_once $fileinc;
+
+$adminmenu[] = array(
+    'title' => _AM_MODULEADMIN_HOME,
+    'link'  => 'admin/index.php',
+    'icon'  => $pathIcon32 . '/home.png'
+);
+
+$adminmenu[] = array(
+    'title' => _MI_BOOKSHOP_ADMENU10,
+    'link'  => 'admin/main.php?op=dashboard',
+    'icon'  => $pathIcon32 . '/manage.png'
+);
+
+$adminmenu[] = array(
+    'title' => _MI_BOOKSHOP_ADMENU0,
+    'link'  => 'admin/main.php?op=lang',
+    'icon'  => $pathIcon32 . '/languages.png'
+);
+
+$adminmenu[] = array(
+    'title' => _MI_BOOKSHOP_ADMENU1,
+    'link'  => 'admin/main.php?op=vat',
+    'icon'  => $pathIcon32 . '/calculator.png'
+);
+
+$adminmenu[] = array(
+    'title' => _MI_BOOKSHOP_ADMENU2,
+    'link'  => 'admin/main.php?op=categories',
+    'icon'  => $pathIcon32 . '/category.png'
+);
+
+$adminmenu[] = array(
+    'title' => _MI_BOOKSHOP_ADMENU3,
+    'link'  => 'admin/main.php?op=authors',
+    'icon'  => $pathIcon32 . '/translations.png'
+);
+
+$adminmenu[] = array(
+    'title' => _MI_BOOKSHOP_ADMENU4,
+    'link'  => 'admin/main.php?op=books',
+    'icon'  => $pathIcon32 . '/album.png'
+);
+
+$adminmenu[] = array(
+    'title' => _MI_BOOKSHOP_ADMENU5,
+    'link'  => 'admin/main.php?op=commands',
+    'icon'  => $pathIcon32 . '/exec.png'
+);
+
+$adminmenu[] = array(
+    'title' => _MI_BOOKSHOP_ADMENU6,
+    'link'  => 'admin/main.php?op=discount',
+    'icon'  => $pathIcon32 . '/discount.png'
+);
+
+$adminmenu[] = array(
+    'title' => _MI_BOOKSHOP_ADMENU7,
+    'link'  => 'admin/main.php?op=newsletter',
+    'icon'  => $pathIcon32 . '/prune.png'
+);
+
+$adminmenu[] = array(
+    'title' => _MI_BOOKSHOP_ADMENU8,
+    'link'  => 'admin/main.php?op=texts',
+    'icon'  => $pathIcon32 . '/highlight.png'
+);
+
+$adminmenu[] = array(
+    'title' => _MI_BOOKSHOP_ADMENU9,
+    'link'  => 'admin/main.php?op=lowstock',
+    'icon'  => $pathIcon32 . '/alert.png'
+);
+
+//$adminmenu[] = array(
+//    'title' => 'XOOPS',
+//    'link'  => 'admin/main.php?op=xoops',
+//    'icon'  => $pathIcon32 . '/manage.png'
+//);
+
 //$adminmenu[12]['title'] = _MI_BOOKSHOP_ADMENU11;
-//$adminmenu[12]['link'] = "admin/index.php?op=email";
-?>
+//$adminmenu[12]['link'] = "admin/main.php?op=email";
+
+$adminmenu[] = array(
+    'title' => _AM_MODULEADMIN_ABOUT,
+    'link'  => 'admin/about.php',
+    'icon'  => $pathIcon32 . '/about.png'
+);

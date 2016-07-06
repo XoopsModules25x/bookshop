@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,22 +24,26 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-if (!defined('XOOPS_ROOT_PATH')) {
-	die("XOOPS root path not defined");
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
+/**
+ * @param $book_id
+ * @param $total_num
+ */
 function bookshop_com_update($book_id, $total_num)
 {
-	require XOOPS_ROOT_PATH.'/modules/bookshop/include/common.php';
-	global $h_bookshop_books;
-	if(!is_object($h_bookshop_books)) {
-		$h_bookshop_books = xoops_getmodulehandler('bookshop_books', 'bookshop');
-	}
-	$h_bookshop_books->updateCommentsCount($book_id, $total_num);
+    require XOOPS_ROOT_PATH . '/modules/bookshop/include/common.php';
+    global $h_bookshop_books;
+    if (!is_object($h_bookshop_books)) {
+        $h_bookshop_books = xoops_getModuleHandler('bookshop_books', 'bookshop');
+    }
+    $h_bookshop_books->updateCommentsCount($book_id, $total_num);
 }
 
+/**
+ * @param $comment
+ */
 function bookshop_com_approve(&$comment)
 {
-	// notification mail here
+    // notification mail here
 }
-?>

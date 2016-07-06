@@ -1,8 +1,8 @@
 Bonjour {X_UNAME},
 
-Une nouvelle catégorie de livres, "{CATEGORY_NAME}" a été créée sur {X_SITENAME}.
+Une nouvelle catÃ©gorie de livres, "{CATEGORY_NAME}" a Ã©tÃ© crÃ©Ã©e sur {X_SITENAME}.
 
-Suivez ce lien pour voir la catégorie :
+Suivez ce lien pour voir la catÃ©gorie :
 {CATEGORY_URL}
 
 Suivez ce lien pour voir la page d'index
@@ -10,12 +10,12 @@ Suivez ce lien pour voir la page d'index
 
 -----------
 
-Vous recevez ce message parce que vous avez choisi d'être notifié lorsque de nouvelles catégories de livres sont ajoutées sur notre site.
+Vous recevez ce message parce que vous avez choisi d'Ãªtre notifiÃ© lorsque de nouvelles catÃ©gories de livres sont ajoutÃ©es sur notre site.
 
-Si c'est une erreur ou si vous ne voulez plus recevoir de tels avis, veuillez mettre à jour vos notifications en visitant le lien ci-dessous :
+Si c'est une erreur ou si vous ne voulez plus recevoir de tels avis, veuillez mettre Ã  jour vos notifications en visitant le lien ci-dessous :
 {X_UNSUBSCRIBE_URL}
 
-Merci de ne pas répondre à ce message.
+Merci de ne pas rÃ©pondre Ã  ce message.
 
 -----------
 

@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,38 +24,37 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 /**
- * Page appelée par Paypal dans le cas de l'annulation d'une commande
+ * Page called by Paypal in the case of cancellation of an order
  */
-include 'header.php';
-$GLOBALS['current_category'] = -1;
-$xoopsOption['template_main'] = 'bookshop_cancelpurchase.html';
-include_once XOOPS_ROOT_PATH.'/header.php';
+include __DIR__ . '/header.php';
+$GLOBALS['current_category']  = -1;
+$xoopsOption['template_main'] = 'bookshop_cancelpurchase.tpl';
+include_once XOOPS_ROOT_PATH . '/header.php';
 
-include_once BOOKSHOP_PATH.'class/bookshop_paypal.php';
-if(isset($_GET['id'])) {
-	$critere = new Criteria('cmd_cancel', $myts->addSlashes($_GET['id']), '=');
-	$cnt = 0;
-	$tblCmd = array();
-	$cnt = $h_bookshop_commands->getCount($critere);
-	if($cnt > 0) {
-		$tblCmd = $h_bookshop_commands->getObjects($critere);
-		if(count($tblCmd) > 0) {
-			$commande = null;
-			$commande = $tblCmd[0];
-			if(is_object($commande)) {
-				$commande->setVar('cmd_state', COMMAND_STATE_CANCELED);
-				$h_bookshop_commands->insert($commande, true);
-				$msg['NUM_COMMANDE'] = $commande->getVar('cmd_id');
-				bookshop_send_email_from_tpl('command_shop_cancel.tpl', bookshop_getEmailsFromGroup(bookshop_getmoduleoption('grp_sold')), _BOOKSHOP_ORDER_CANCELED, $msg);
-				bookshop_send_email_from_tpl('command_client_cancel.tpl', $commande->getVar('cmd_email'), _BOOKSHOP_ORDER_CANCELED, $msg);
-			}
-		}
-		$h_bookshop_caddy->emptyCart();
-	}
+include_once BOOKSHOP_PATH . 'class/bookshop_paypal.php';
+if (isset($_GET['id'])) {
+    $critere = new Criteria('cmd_cancel', $myts->addSlashes($_GET['id']), '=');
+    $cnt     = 0;
+    $tblCmd  = array();
+    $cnt     = $h_bookshop_commands->getCount($critere);
+    if ($cnt > 0) {
+        $tblCmd = $h_bookshop_commands->getObjects($critere);
+        if (count($tblCmd) > 0) {
+            $commande = null;
+            $commande = $tblCmd[0];
+            if (is_object($commande)) {
+                $commande->setVar('cmd_state', COMMAND_STATE_CANCELED);
+                $h_bookshop_commands->insert($commande, true);
+                $msg['NUM_COMMANDE'] = $commande->getVar('cmd_id');
+                bookshop_send_email_from_tpl('command_shop_cancel.tpl', bookshop_getEmailsFromGroup(bookshop_getmoduleoption('grp_sold')), _BOOKSHOP_ORDER_CANCELED, $msg);
+                bookshop_send_email_from_tpl('command_client_cancel.tpl', $commande->getVar('cmd_email'), _BOOKSHOP_ORDER_CANCELED, $msg);
+            }
+        }
+        $h_bookshop_caddy->emptyCart();
+    }
 }
 
-$title = _BOOKSHOP_VALIDATE_CMD.' - '.bookshop_get_module_name();
+$title = _BOOKSHOP_VALIDATE_CMD . ' - ' . bookshop_get_module_name();
 bookshop_set_metas($title, $title);
 bookshop_setCSS();
-include_once(XOOPS_ROOT_PATH.'/footer.php');
-?>
+include_once(XOOPS_ROOT_PATH . '/footer.php');

@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,21 +24,20 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 /**
- * Affichage des conditions générales de vente
+ * Display of general conditions of sale
  */
-include 'header.php';
-$GLOBALS['current_category'] = -1;
-$xoopsOption['template_main'] = 'bookshop_cgv.html';
-include_once XOOPS_ROOT_PATH.'/header.php';
-include_once BOOKSHOP_PATH.'class/registryfile.php';
+include __DIR__ . '/header.php';
+$GLOBALS['current_category']  = -1;
+$xoopsOption['template_main'] = 'bookshop_cgv.tpl';
+include_once XOOPS_ROOT_PATH . '/header.php';
+include_once BOOKSHOP_PATH . 'class/registryfile.php';
 
 $registry = new bookshop_registryfile();
 
 $xoopsTpl->assign('nostock_msg', bookshop_getmoduleoption('nostock_msg'));
-$xoopsTpl->assign('mod_pref', $mod_pref);	// Préférences du module
+$xoopsTpl->assign('mod_pref', $mod_pref);    // Module Preferences
 $xoopsTpl->assign('cgv_msg', $registry->getfile('bookshop_cgv.txt'));
 
 bookshop_setCSS();
-bookshop_set_metas(_BOOKSHOP_CGV.' '.bookshop_get_module_name(), _BOOKSHOP_CGV.' '.bookshop_get_module_name());
-include_once(XOOPS_ROOT_PATH.'/footer.php');
-?>
+bookshop_set_metas(_BOOKSHOP_CGV . ' ' . bookshop_get_module_name(), _BOOKSHOP_CGV . ' ' . bookshop_get_module_name());
+include_once(XOOPS_ROOT_PATH . '/footer.php');

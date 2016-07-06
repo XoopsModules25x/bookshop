@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,18 +24,17 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-define("_MB_BOOKSHOP_DISP","Afficher");
-define("_MB_BOOKSHOP_LINKS","Liens");
-define("_MB_BOOKSHOP_CHARS","Taille du titre");
-define("_MB_BOOKSHOP_LENGTH"," caractËres");
-define("_MB_BOOKSHOP_BOOKS_CNT","Nombre de livres ‡ afficher");
-define("_MB_BOOKSHOP_MAX_ITEMS","Nombre maximum d'ÈlÈments ‡ afficher (0 = pas de limite)");
-define("_MB_BOOKSHOP_SORT_ORDER","Ordre de tri");
-define("_MB_BOOKSHOP_SORT_1","Titre");
-define("_MB_BOOKSHOP_SORT_2","Nombre");
-define("_MB_BOOKSHOP_CATEGORY","CatÈgorie");
-define("_MB_BOOKSHOP_ALL_CATEGORIES","* Toutes les catÈgories *");
-define("_MB_BOOKSHOP_TYPE_BLOCK","Type de bloc");
-define("_MB_BOOKSHOP_TYPE_BLOCK1","Liste classique des catÈgories");
-define("_MB_BOOKSHOP_TYPE_BLOCK2","Liste des catÈgories en accord avec la page en cours");
-?>
+define('_MB_BOOKSHOP_DISP', 'Afficher');
+define('_MB_BOOKSHOP_LINKS', 'Liens');
+define('_MB_BOOKSHOP_CHARS', 'Taille du titre');
+define('_MB_BOOKSHOP_LENGTH', ' caract√®res');
+define('_MB_BOOKSHOP_BOOKS_CNT', 'Nombre de livres √† afficher');
+define('_MB_BOOKSHOP_MAX_ITEMS', "Nombre maximum d'√©l√©ments √† afficher (0 = pas de limite)");
+define('_MB_BOOKSHOP_SORT_ORDER', 'Ordre de tri');
+define('_MB_BOOKSHOP_SORT_1', 'Titre');
+define('_MB_BOOKSHOP_SORT_2', 'Nombre');
+define('_MB_BOOKSHOP_CATEGORY', 'Cat√©gorie');
+define('_MB_BOOKSHOP_ALL_CATEGORIES', '* Toutes les cat√©gories *');
+define('_MB_BOOKSHOP_TYPE_BLOCK', 'Type de bloc');
+define('_MB_BOOKSHOP_TYPE_BLOCK1', 'Liste classique des cat√©gories');
+define('_MB_BOOKSHOP_TYPE_BLOCK2', 'Liste des cat√©gories en accord avec la page en cours');

@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,31 +24,36 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-if (!defined('XOOPS_ROOT_PATH')) {
-	die("XOOPS root path not defined");
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
-include_once XOOPS_ROOT_PATH.'/class/xoopsobject.php';
+include_once XOOPS_ROOT_PATH . '/kernel/object.php';
 if (!class_exists('Bookshop_XoopsPersistableObjectHandler')) {
-	include_once XOOPS_ROOT_PATH.'/modules/bookshop/class/PersistableObjectHandler.php';
+    include_once XOOPS_ROOT_PATH . '/modules/bookshop/class/PersistableObjectHandler.php';
 }
 
+/**
+ * Class bookshop_related
+ */
 class bookshop_related extends Bookshop_Object
 {
-	function bookshop_related()
-	{
-		$this->initVar('related_id',XOBJ_DTYPE_INT,null,false);
-		$this->initVar('related_book_id',XOBJ_DTYPE_INT,null,false);
-		$this->initVar('related_book_related',XOBJ_DTYPE_INT,null,false);
-	}
+    public function __construct()
+    {
+        $this->initVar('related_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('related_book_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('related_book_related', XOBJ_DTYPE_INT, null, false);
+    }
 }
 
-
+/**
+ * Class BookshopBookshop_relatedHandler
+ */
 class BookshopBookshop_relatedHandler extends Bookshop_XoopsPersistableObjectHandler
 {
-	function BookshopBookshop_relatedHandler($db)
-	{	//												Table				Classe					 Id
-		$this->BookXoopsPersistableObjectHandler($db, 'bookshop_related', 'bookshop_related', 'related_id');
-	}
+    /**
+     * @param $db
+     */
+    public function __construct($db)
+    {    //                          Table               Classe                   Id
+        parent::__construct($db, 'bookshop_related', 'bookshop_related', 'related_id');
+    }
 }
-?>

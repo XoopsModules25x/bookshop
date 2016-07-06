@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,18 +24,17 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-define("_MB_BOOKSHOP_DISP","Display");
-define("_MB_BOOKSHOP_LINKS","Links");
-define("_MB_BOOKSHOP_CHARS","Length of the title");
-define("_MB_BOOKSHOP_LENGTH"," characters");
-define("_MB_BOOKSHOP_BOOKS_CNT","How many books to display");
-define("_MB_BOOKSHOP_MAX_ITEMS","Maximum number of items to show (0 = no limit)");
-define("_MB_BOOKSHOP_SORT_ORDER","Sort Order");
-define("_MB_BOOKSHOP_SORT_1","Title");
-define("_MB_BOOKSHOP_SORT_2","Count");
-define("_MB_BOOKSHOP_CATEGORY","Category");
-define("_MB_BOOKSHOP_ALL_CATEGORIES","* All categories *");
-define("_MB_BOOKSHOP_TYPE_BLOCK","Type of block");
-define("_MB_BOOKSHOP_TYPE_BLOCK1","Classical list of categories");
-define("_MB_BOOKSHOP_TYPE_BLOCK2","List of categories runing in conjunction with the current page");
-?>
+define('_MB_BOOKSHOP_DISP', 'Display');
+define('_MB_BOOKSHOP_LINKS', 'Links');
+define('_MB_BOOKSHOP_CHARS', 'Length of the title');
+define('_MB_BOOKSHOP_LENGTH', ' characters');
+define('_MB_BOOKSHOP_BOOKS_CNT', 'How many books to display');
+define('_MB_BOOKSHOP_MAX_ITEMS', 'Maximum number of items to show (0 = no limit)');
+define('_MB_BOOKSHOP_SORT_ORDER', 'Sort Order');
+define('_MB_BOOKSHOP_SORT_1', 'Title');
+define('_MB_BOOKSHOP_SORT_2', 'Count');
+define('_MB_BOOKSHOP_CATEGORY', 'Category');
+define('_MB_BOOKSHOP_ALL_CATEGORIES', '* All categories *');
+define('_MB_BOOKSHOP_TYPE_BLOCK', 'Type of block');
+define('_MB_BOOKSHOP_TYPE_BLOCK1', 'Classical list of categories');
+define('_MB_BOOKSHOP_TYPE_BLOCK2', 'List of categories runing in conjunction with the current page');

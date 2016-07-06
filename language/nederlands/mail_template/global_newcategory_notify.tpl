@@ -10,7 +10,7 @@ Volg de onderstaande link om de categorieindex te bekijken:
 
 -----------
 
-U ontvangt dit bericht omdat u er voor heeft gekozen om notificaties te ontvangen als nieuwe boekcategorieën worden toegevoegd aan onze site.
+U ontvangt dit bericht omdat u er voor heeft gekozen om notificaties te ontvangen als nieuwe boekcategorieÃ«n worden toegevoegd aan onze site.
 
 Als dit niet correct is of als u in de toekomst deze notificaties niet meer wenst te ontvangen, dan kunt u dat aangeven via de onderstaande link:
 {X_UNSUBSCRIBE_URL}

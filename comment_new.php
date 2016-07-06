@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,18 +24,17 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-include '../../mainfile.php';
-include 'header.php';
-$com_itemid = isset($_GET['com_itemid']) ? intval($_GET['com_itemid']) : 0;
+include __DIR__ . '/../../mainfile.php';
+include __DIR__ . '/header.php';
+$com_itemid = isset($_GET['com_itemid']) ? (int)$_GET['com_itemid'] : 0;
 if ($com_itemid > 0) {
-	include XOOPS_ROOT_PATH.'/modules/bookshop/include/common.php';
-	$book = null;
-	$book = $h_bookshop_books->get($com_itemid);
-	if(is_object($book)) {
-    	$com_replytitle = $book->getVar('book_title');
-    	include XOOPS_ROOT_PATH.'/include/comment_new.php';
-	} else {
-		exit();	
-	}    
+    include XOOPS_ROOT_PATH . '/modules/bookshop/include/common.php';
+    $book = null;
+    $book = $h_bookshop_books->get($com_itemid);
+    if (is_object($book)) {
+        $com_replytitle = $book->getVar('book_title');
+        include XOOPS_ROOT_PATH . '/include/comment_new.php';
+    } else {
+        exit();
+    }
 }
-?>

@@ -1,21 +1,21 @@
 Bonjour {X_UNAME},
 
-Un nouveau livre, "{BOOK_NAME}" a été ajouté sur {X_SITENAME}.
+Un nouveau livre, "{BOOK_NAME}" a Ã©tÃ© ajoutÃ© sur {X_SITENAME}.
 
-Voilà le sommaire du livre :
+VoilÃ  le sommaire du livre :
 {BOOK_SUMMARY}
 
-Vous pouvez voir ce livre à cette adresse :
+Vous pouvez voir ce livre Ã  cette adresse :
 {BOOK_URL}
 
 -----------
 
-Vous recevez ce message parce que vous avez choisi d'être notifié lorsqu'un nouveau livre est ajouté sur notre site.
+Vous recevez ce message parce que vous avez choisi d'Ãªtre notifiÃ© lorsqu'un nouveau livre est ajoutÃ© sur notre site.
 
-Si c'est une erreur ou si vous ne voulez plus recevoir de tels avis, veuillez mettre à jour vos notifications en visitant le lien ci-dessous :
+Si c'est une erreur ou si vous ne voulez plus recevoir de tels avis, veuillez mettre Ã  jour vos notifications en visitant le lien ci-dessous :
 {X_UNSUBSCRIBE_URL}
 
-Merci de ne pas répondre à ce message.
+Merci de ne pas rÃ©pondre Ã  ce message.
 
 -----------
 

@@ -1,7 +1,7 @@
 <?php
-$newslettertemplate=<<<contentend
+$newslettertemplate = <<<contentend
 Titre du livre : %title%
-Catégorie : %category%
+CatÃ©gorie : %category%
 Auteur(s) : %author%
 Date de publication : %published%
 Prix : %price% %money%
@@ -13,4 +13,3 @@ En savoir plus : %link%
  ----------------------------------------------------------------------------
 
 contentend;
-?>

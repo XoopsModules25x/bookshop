@@ -3,16 +3,16 @@ Bonjour,
 Cet email vous informe que le livre suivant a atteint son alerte de stock :
 {BOOK_NAME}
 
-Quantité actuelle en stock : {ACTUAL_QUANTITY}
-Quantité d'alerte : {ALERT_QUANTITY}
+QuantitÃ© actuelle en stock : {ACTUAL_QUANTITY}
+QuantitÃ© d'alerte : {ALERT_QUANTITY}
 
-Vous pouvez voir le livre à cette adresse :
+Vous pouvez voir le livre Ã  cette adresse :
 {PUBLIC_URL}
 
-Et vous pouvez l'éditer à cette autre adresse (une fois connecté) :
+Et vous pouvez l'Ã©diter Ã  cette autre adresse (une fois connectÃ©) :
 {ADMIN_URL}
 
 
-Cet email est généré automatiquement, merci de ne pas y répondre
+Cet email est gÃ©nÃ©rÃ© automatiquement, merci de ne pas y rÃ©pondre
 -------------------------
 {X_SITENAME} ({X_SITEURL})

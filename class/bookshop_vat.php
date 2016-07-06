@@ -1,6 +1,6 @@
 <?php
 //  ------------------------------------------------------------------------ //
-//                      BOOKSHOP - MODULE FOR XOOPS 2                		 //
+//                      BOOKSHOP - MODULE FOR XOOPS 2                        //
 //                  Copyright (c) 2007, 2008 Instant Zero                    //
 //                     <http://www.instant-zero.com/>                        //
 // ------------------------------------------------------------------------- //
@@ -24,52 +24,58 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-if (!defined('XOOPS_ROOT_PATH')) {
-	die("XOOPS root path not defined");
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
-include_once XOOPS_ROOT_PATH.'/class/xoopsobject.php';
+include_once XOOPS_ROOT_PATH . '/kernel/object.php';
 if (!class_exists('Bookshop_XoopsPersistableObjectHandler')) {
-	include_once XOOPS_ROOT_PATH.'/modules/bookshop/class/PersistableObjectHandler.php';
+    include_once XOOPS_ROOT_PATH . '/modules/bookshop/class/PersistableObjectHandler.php';
 }
 
+/**
+ * Class bookshop_vat
+ */
 class bookshop_vat extends Bookshop_Object
 {
-	function bookshop_vat()
-	{
-		$this->initVar('vat_id',XOBJ_DTYPE_INT,null,false);
-		$this->initVar('vat_rate',XOBJ_DTYPE_TXTBOX,null,false);
-	}
+    public function __construct()
+    {
+        $this->initVar('vat_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('vat_rate', XOBJ_DTYPE_TXTBOX, null, false);
+    }
 }
 
-
+/**
+ * Class BookshopBookshop_vatHandler
+ */
 class BookshopBookshop_vatHandler extends Bookshop_XoopsPersistableObjectHandler
 {
-	function BookshopBookshop_vatHandler($db)
-	{	//												Table			Classe		 	Id
-		$this->BookXoopsPersistableObjectHandler($db, 'bookshop_vat', 'bookshop_vat', 'vat_id');
-	}
+    /**
+     * @param $db
+     */
+    public function __construct($db)
+    {    //                                             Table           Classe          Id
+        parent::__construct($db, 'bookshop_vat', 'bookshop_vat', 'vat_id');
+    }
 
-	/**
-	 * Renvoie la liste de toutes les TVA du module
-	 *
-	 * @param integer $start Position de départ
-	 * @param integer $limit Nombre total d'enregistrements à renvoyer
+    /**
+     * Renvoie la liste de toutes les TVA du module
+     *
+	 * @param integer $start Position de dÃ©part
+	 * @param integer $limit Nombre total d'enregistrements Ã  renvoyer
 	 * @param string $order Champ sur lequel faire le tri
-	 * @param string $order Ordre du tri
-	 * @param boolean $idaskey Indique si le tableau renvoyé doit avoir pour clé l'identifiant unique de l'enregistrement
-	 * @return array tableau d'objets de type TVA
-	 */
-	function GetAllVats($start = 0, $limit = 0, $sort = 'vat_id', $order='ASC', $idaskey = true)
-	{
-		$critere = new Criteria('vat_id', 0 ,'<>');
-		$critere->setLimit($limit);
-		$critere->setStart($start);
-		$critere->setSort($sort);
-		$critere->setOrder($order);
-		$tblVats = array();
-		$tblVats = $this->getObjects($critere, $idaskey);
-		return $tblVats;
-	}
+     * @param string  $order   Ordre du tri
+	 * @param boolean $idaskey Indique si le tableau renvoyÃ© doit avoir pour clÃ© l'identifiant unique de l'enregistrement
+     * @return array tableau d'objets de type TVA
+     */
+    public function GetAllVats($start = 0, $limit = 0, $sort = 'vat_id', $order = 'ASC', $idaskey = true)
+    {
+        $critere = new Criteria('vat_id', 0, '<>');
+        $critere->setLimit($limit);
+        $critere->setStart($start);
+        $critere->setSort($sort);
+        $critere->setOrder($order);
+        $tblVats = array();
+        $tblVats =& $this->getObjects($critere, $idaskey);
+
+        return $tblVats;
+    }
 }
-?>
