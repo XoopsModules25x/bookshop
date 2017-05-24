@@ -393,7 +393,7 @@ class BookshopBookshop_caddyHandler extends Bookshop_XoopsPersistableObjectHandl
     {
         $ret     = array();
         $critere = new Criteria('caddy_cmd_id', $caddy_cmd_id, '=');
-        $ret     =& $this->getObjects($critere);
+        $ret     = $this->getObjects($critere);
 
         return $ret;
     }

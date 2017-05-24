@@ -96,7 +96,7 @@ class BookshopBookshop_votedataHandler extends Bookshop_XoopsPersistableObjectHa
         $criteria->setStart($start);
         $criteria->setSort('vote_ratingtimestamp');
         $criteria->setOrder('DESC');
-        $tbl_datas =& $this->getObjects($criteria, true);
+        $tbl_datas = $this->getObjects($criteria, true);
 
         return $tbl_datas;
     }

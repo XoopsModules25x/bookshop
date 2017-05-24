@@ -74,7 +74,7 @@ class BookshopBookshop_vatHandler extends Bookshop_XoopsPersistableObjectHandler
         $critere->setSort($sort);
         $critere->setOrder($order);
         $tblVats = array();
-        $tblVats =& $this->getObjects($critere, $idaskey);
+        $tblVats = $this->getObjects($critere, $idaskey);
 
         return $tblVats;
     }

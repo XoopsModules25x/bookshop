@@ -128,7 +128,7 @@ class BookshopBookshop_discountsHandler extends Bookshop_XoopsPersistableObjectH
             $critere->add(new Criteria('disc_on_what', DISCOUNT_ON3, '='));
             $tblGroups = $this->getCurrentMemberGroups();
             $critere->add(new Criteria('disc_group', '(' . implode(',', $tblGroups) . ')', 'IN'));
-            $tblBuffer =& $this->getObjects($critere);
+            $tblBuffer = $this->getObjects($critere);
         }
 
         return $tblBuffer;
@@ -148,7 +148,7 @@ class BookshopBookshop_discountsHandler extends Bookshop_XoopsPersistableObjectH
             $critere->add(new Criteria('disc_on_what', DISCOUNT_ON2, '='));
             $tblGroups = $this->getCurrentMemberGroups();
             $critere->add(new Criteria('disc_group', '(' . implode(',', $tblGroups) . ')', 'IN'));
-            $tblBuffer =& $this->getObjects($critere);
+            $tblBuffer = $this->getObjects($critere);
         }
 
         return $tblBuffer;
@@ -168,7 +168,7 @@ class BookshopBookshop_discountsHandler extends Bookshop_XoopsPersistableObjectH
             $critere->add(new Criteria('disc_on_what', DISCOUNT_ON4, '='));
             $tblGroups = $this->getCurrentMemberGroups();
             $critere->add(new Criteria('disc_group', '(' . implode(',', $tblGroups) . ')', 'IN'));
-            $tblBuffer =& $this->getObjects($critere);
+            $tblBuffer = $this->getObjects($critere);
         }
 
         return $tblBuffer;
@@ -193,7 +193,7 @@ class BookshopBookshop_discountsHandler extends Bookshop_XoopsPersistableObjectH
             $critere->add($critere2);
             $tblGroups = $this->getCurrentMemberGroups();
             $critere->add(new Criteria('disc_group', '(' . implode(',', $tblGroups) . ')', 'IN'));
-            $tblBuffer =& $this->getObjects($critere);
+            $tblBuffer = $this->getObjects($critere);
 
             return $tblBuffer;
         }
@@ -213,7 +213,7 @@ class BookshopBookshop_discountsHandler extends Bookshop_XoopsPersistableObjectH
             $critere->add(new Criteria('disc_on_what', DISCOUNT_ON1, '='));
             $tblGroups = $this->getCurrentMemberGroups();
             $critere->add(new Criteria('disc_group', '(' . implode(',', $tblGroups) . ')', 'IN'));
-            $tblBuffer =& $this->getObjects($critere);
+            $tblBuffer = $this->getObjects($critere);
         }
 
         return $tblBuffer;
