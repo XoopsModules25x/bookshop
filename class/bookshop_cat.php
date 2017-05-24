@@ -83,7 +83,7 @@ class BookshopBookshop_catHandler extends Bookshop_XoopsPersistableObjectHandler
         $critere->setSort($sort);
         $critere->setOrder($order);
         $tbl_categs = array();
-        $tbl_categs =& $this->getObjects($critere, $idaskey);
+        $tbl_categs = $this->getObjects($critere, $idaskey);
 
         return $tbl_categs;
     }

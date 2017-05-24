@@ -284,7 +284,7 @@ function bookshop_send_email_from_tpl($tpl_name, $recipients, $subject, $variabl
         }
     }
     if (function_exists('xoops_getMailer')) {
-        $xoopsMailer =& xoops_getMailer();
+        $xoopsMailer = xoops_getMailer();
     } else {
         $xoopsMailer =& getMailer();
     }

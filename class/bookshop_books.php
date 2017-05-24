@@ -186,7 +186,7 @@ class BookshopBookshop_booksHandler extends Bookshop_XoopsPersistableObjectHandl
         $criteria->setStart($start);
         $criteria->setSort('book_hits');
         $criteria->setOrder('DESC');
-        $tbl_datas =& $this->getObjects($criteria, true);
+        $tbl_datas = $this->getObjects($criteria, true);
 
         return $tbl_datas;
     }
@@ -219,7 +219,7 @@ class BookshopBookshop_booksHandler extends Bookshop_XoopsPersistableObjectHandl
         $criteria->setStart($start);
         $criteria->setSort('book_rating');
         $criteria->setOrder('DESC');
-        $tbl_datas =& $this->getObjects($criteria, true);
+        $tbl_datas = $this->getObjects($criteria, true);
 
         return $tbl_datas;
     }
@@ -253,7 +253,7 @@ class BookshopBookshop_booksHandler extends Bookshop_XoopsPersistableObjectHandl
         $criteria->setStart($start);
         $criteria->setSort('book_recommended');
         $criteria->setOrder('DESC');
-        $tbl_datas =& $this->getObjects($criteria, true);
+        $tbl_datas = $this->getObjects($criteria, true);
 
         return $tbl_datas;
     }
@@ -306,7 +306,7 @@ class BookshopBookshop_booksHandler extends Bookshop_XoopsPersistableObjectHandl
         $criteria->setLimit($limit);
         $criteria->setStart($start);
         $criteria->setSort($sortField);
-        $tbl_datas =& $this->getObjects($criteria, true);
+        $tbl_datas = $this->getObjects($criteria, true);
 
         return $tbl_datas;
     }
@@ -341,7 +341,7 @@ class BookshopBookshop_booksHandler extends Bookshop_XoopsPersistableObjectHandl
         $criteria->setLimit($limit);
         $criteria->setStart($start);
         $criteria->setSort('book_title');
-        $tblDatas =& $this->getObjects($criteria, true);
+        $tblDatas = $this->getObjects($criteria, true);
 
         return $tblDatas;
     }
@@ -489,7 +489,7 @@ class BookshopBookshop_booksHandler extends Bookshop_XoopsPersistableObjectHandl
         $criteria->setLimit($limit);
         $criteria->setStart($start);
         $criteria->setSort('RAND()');
-        $tbl_datas =& $this->getObjects($criteria, true);
+        $tbl_datas = $this->getObjects($criteria, true);
 
         return $tbl_datas;
     }
@@ -523,7 +523,7 @@ class BookshopBookshop_booksHandler extends Bookshop_XoopsPersistableObjectHandl
         $criteria->setStart($start);
         $criteria->setSort('book_title');
         $criteria->setOrder('DESC');
-        $tbl_datas =& $this->getObjects($criteria, true);
+        $tbl_datas = $this->getObjects($criteria, true);
 
         return $tbl_datas;
     }
